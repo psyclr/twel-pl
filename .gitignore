@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.prerender/
+.pages-release/
+.source-publish/
+.env
+.env.*
+!.env.example
+qa/browser-report.json
+qa/screenshots/
+__pycache__/

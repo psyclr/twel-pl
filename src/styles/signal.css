@@ -1,0 +1,50 @@
+.signal{--paper:#fffef9;--ink:#23221e;--muted:#64635d;--accent:#fa5732;--line:#d9d6cb;--soft:#f0eee4;--contact-bg:#e6e9ff;--footer-bg:#292820}
+.signal .button{border-radius:0;background:#26261f;color:#fffef9}
+
+.signal-hero{padding-top:38px;background:#fa5732}
+.signal-hero-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px}
+.signal-hero-top>p{font-size:.85rem;line-height:1.6}
+.signal-stamp{font-size:.75rem;line-height:1.5;display:flex;gap:30px;align-items:center}
+.signal-stamp>span{font-size:4rem;line-height:1}
+.signal-hero h1{font-size:clamp(6rem,12.5vw,12.5rem);font-weight:600;letter-spacing:-.075em;line-height:.88}
+.signal-hero h1>span{margin-left:15%}
+.signal-hero-bottom{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-block:36px 46px}
+.signal-hero-bottom>p{font-size:.95rem}
+.signal-hero-photo{position:relative;width:calc(100% - 112px);margin:auto}
+.signal-hero-photo>img{width:100%;height:560px;object-fit:cover;object-position:center 54%}
+.signal-photo-note{position:absolute;bottom:24px;left:24px;background:#fffef4;color:#26261f;padding:10px 18px;font-size:.8rem}
+.signal-hero::after{content:'';display:block;height:36px}
+.signal-offer h2{font-size:clamp(3rem,5.8vw,5.5rem)}
+.signal-products{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.signal-product{position:relative;padding:30px;background:#f0eee4;overflow:hidden}
+.signal-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:.8rem}
+.signal-card-top>a{display:grid;place-items:center;width:36px;height:36px;border:1px solid #28261d55;border-radius:50%}
+.signal-product h3{font-size:2rem;position:relative;z-index:1}
+.signal-product .monitor-scene{height:310px;margin-block:6px 12px}
+.signal-product>p{font-size:.9rem;max-width:42ch;position:relative;z-index:1}
+.signal-color-0{background:#e5e7fa}
+.signal-color-1{background:#f5c4d2}
+.signal-color-2{background:#d8e6c6}
+.signal-color-3{background:#f9d16d}
+.signal-product .screen-brand{font-size:1.9rem}
+.signal-places{background:#e5e7fa}
+.signal-places-heading{display:flex;justify-content:space-between;gap:50px;align-items:flex-start}
+.signal-places-heading>.eyebrow{max-width:160px}
+.signal-places h2{font-size:clamp(3rem,5.8vw,5.5rem)}
+.signal-places h2 em{font-style:normal;color:#4e52c5}
+.signal-place-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:55px;margin-top:70px}
+.place-icon{font-size:3rem;display:block;line-height:1;margin-bottom:22px}
+.signal-place-grid h3{font-size:1.55rem}
+.signal-place-grid p{font-size:.9rem;margin-top:16px;max-width:32ch;color:#535366}
+.signal-statement{background:#292820;color:#fffdf3;position:relative;overflow:hidden;padding-block:90px}
+.signal-statement>.container{position:relative;z-index:1}
+.signal-statement p{font-size:.9rem;color:#d2d0bf;margin-bottom:24px}
+.signal-statement h2{font-size:clamp(2.8rem,5.8vw,5.2rem);max-width:900px}
+.signal-statement .button{background:#fa5732;color:#211d17;margin-top:32px}
+.statement-star{position:absolute;right:-30px;top:15px;font-size:450px;line-height:1;color:#404135;transform:rotate(15deg)}
+.signal .contact-copy h2{font-size:clamp(3rem,4.5vw,4.4rem)}
+.signal .quote-form{border-radius:0}
+@media(max-width:1000px){.signal-hero h1{font-size:12vw}.signal-hero-photo{width:calc(100% - 64px)}.signal-hero-photo>img{height:480px}.signal-place-grid{gap:30px}.signal-places-heading{display:block}.signal-places-heading>.eyebrow{max-width:none}}
+@media(max-width:760px){
+ .signal-hero{padding-top:26px}.signal-hero-top{margin-bottom:42px}.signal-hero-top>p{font-size:.75rem}.signal-stamp{font-size:.65rem;gap:12px}.signal-stamp>span{font-size:2.8rem}.signal-hero h1{font-size:clamp(3.8rem,14vw,6rem)}.signal-hero h1>span{margin-left:0}.signal-hero-bottom{display:block;margin-block:30px}.signal-hero-bottom>.button{margin-top:22px}.signal-hero-photo{width:calc(100% - 40px)}.signal-hero-photo>img{height:340px;object-position:42% center}.signal-photo-note{bottom:16px;left:12px;padding:8px 12px;font-size:.65rem}.signal-hero::after{height:20px}.signal-products{grid-template-columns:1fr;gap:20px}.signal-product{padding:24px}.signal-product h3{font-size:1.8rem}.signal-product .monitor-scene{height:300px}.signal-place-grid{grid-template-columns:1fr;gap:36px;margin-top:40px}.signal-place-grid article{border-top:1px solid #a2a4c4;padding-top:24px}.signal-place-grid p{max-width:45ch}.place-icon{font-size:2rem;margin-bottom:16px}.signal-statement{padding-block:64px}.statement-star{font-size:280px;top:20%}
+}
