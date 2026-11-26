@@ -1,0 +1,16 @@
+[Unit]
+Description=twel.pl quote form: sends each inquiry to the owners through Postal
+After=network-online.target
+
+[Service]
+WorkingDirectory=/srv/twel/server
+EnvironmentFile=/etc/twel-pl/inquiry.env
+ExecStart=/opt/nodejs/bin/node server.mjs
+Restart=always
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target

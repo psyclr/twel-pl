@@ -22,7 +22,17 @@ npm run preview
 
 Готовые HTML-страницы и медиа находятся в `dist/`. Текст страниц доступен до загрузки JavaScript. Шрифты, изображения, видео и актуальный `TWEL_Katalog.pdf` хранятся в `public/`.
 
-Форма расчёта сохраняет заявку в текстовый файл. Отправка по e-mail требует подключения обработчика.
+## Форма заявки
+
+Форма отправляет `POST /api/zapytanie`. Сервис `server/` (Node, `nodemailer`) проверяет поля и отправляет письмо владельцам через Postal на сервере. В `Reply-To` стоит адрес клиента. Получатели, SMTP-учётка и отправитель задаются в `/etc/twel-pl/inquiry.env` на сервере (`INQUIRY_TO`, `SMTP_*`). Тесты: `cd server && npm test`.
+
+## Сервер
+
+Caddy отдаёт `/srv/twel/dist` для `twel.pl` и проксирует `/api/*` на `127.0.0.1:3420`. Там работает unit `twel-inquiry` (`server/twel-inquiry.service`). Обновление после пуша в `main`:
+
+```sh
+cd /srv/twel && git pull --ff-only && npm ci && npm run build && (cd server && npm ci --omit=dev) && systemctl restart twel-inquiry
+```
 
 ## Проверка в браузере
 

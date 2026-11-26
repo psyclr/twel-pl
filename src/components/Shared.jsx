@@ -51,29 +51,31 @@ export function CatalogSection() {
 export function FAQ() {
  return <section className="faq-section section-pad"><div className="container faq-layout"><div><p className="eyebrow">Dobrze wiedzieć</p><h2>Zanim włączysz<br/>pierwszy ekran.</h2></div><div className="faq-list">{questions.map(([q,a])=><details key={q}><summary>{q}<Icon/></summary><p>{a}</p></details>)}</div></div></section>;
 }
+const sendStatusText = {
+  sending: 'Wysyłamy zapytanie…',
+  sent: 'Dziękujemy! Zapytanie zostało wysłane. Odpowiemy na podany adres e-mail.',
+  failed: 'Nie udało się wysłać zapytania. Spróbuj ponownie lub zadzwoń: ' + company.phone + '.',
+  limited: 'Wysłano zbyt wiele zapytań. Spróbuj ponownie za kilka minut lub zadzwoń: ' + company.phone + '.',
+};
+
 export function Contact({ locations, location, onLocationChange }) {
-  const [ready, setReady] = useState(false);
+  const [status, setStatus] = useState('idle');
 
-  function saveBrief(event) {
+  async function sendInquiry(event) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const lines = [
-      'Zapytanie o projekt twel.pl',
-      '',
-      'Imię i firma: ' + data.get('name'),
-      'E-mail: ' + data.get('email'),
-    ];
-
-    if (data.get('location')) lines.push('Miejsce instalacji: ' + data.get('location'));
-    lines.push('Rozwiązanie: ' + data.get('product'), 'Opis projektu: ' + data.get('message'));
-
-    const url = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'twel-zapytanie.txt';
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setReady(true);
+    const form = event.currentTarget;
+    setStatus('sending');
+    try {
+      const response = await fetch('/api/zapytanie', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      if (response.ok) form.reset();
+      setStatus(response.ok ? 'sent' : response.status === 429 ? 'limited' : 'failed');
+    } catch {
+      setStatus('failed');
+    }
   }
 
   return (
@@ -92,7 +94,7 @@ export function Contact({ locations, location, onLocationChange }) {
             <a href={phoneLink}>{company.phone}</a>
           </div>
         </div>
-        <form className="quote-form" onSubmit={saveBrief} onChange={() => setReady(false)}>
+        <form className="quote-form" onSubmit={sendInquiry}>
           <h3>Przygotuj zapytanie</h3>
           <div className="form-row">
             <label>
@@ -129,9 +131,12 @@ export function Contact({ locations, location, onLocationChange }) {
             Opowiedz o projekcie
             <textarea name="message" rows="3" placeholder="Gdzie stanie ekran? Jaki format planujesz?" required maxLength={3000} />
           </label>
-          <button className="button" type="submit">Zapisz zapytanie <Icon name="download" /></button>
-          <p className="form-note">W podglądzie możesz zapisać zapytanie jako plik tekstowy. Wysyłka jest jeszcze niedostępna.</p>
-          <p className="form-status" role="status">{ready ? 'Plik przygotowany. Twoje dane nie zostały wysłane.' : ''}</p>
+          <label className="form-trap" aria-hidden="true">
+            Strona www
+            <input name="website" tabIndex={-1} autoComplete="off" />
+          </label>
+          <button className="button" type="submit" disabled={status === 'sending'}>Wyślij zapytanie <Icon name="check" /></button>
+          <p className="form-status" role="status">{sendStatusText[status] || ''}</p>
         </form>
       </div>
     </section>
