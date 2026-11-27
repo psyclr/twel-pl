@@ -172,6 +172,3 @@ export function Footer({ onCatalog = false }) {
     </footer>
   );
 }
-export function Process({title='Od miejsca do obrazu.'}) {
- return <section className="process-section section-pad"><div className="container"><div className="section-head"><div><p className="eyebrow">Dobry ekran zaczyna się od rozmowy</p><h2>{title}</h2></div><p>Dobór rozwiązania zaczyna się od tego,<br/>co chcesz osiągnąć w swojej przestrzeni.</p></div><div className="process-grid">{[['01','Pokaż nam miejsce','Witryna, ściana lub otwarta przestrzeń. Zdjęcie i wymiary pomogą określić punkt wyjścia.'],['02','Dobierzmy ekran','Format, odległość odbiorcy i światło. To one pomagają wybrać właściwe rozwiązanie.'],['03','Zaplanujmy efekt','Ustalmy konfigurację i treści, które chcesz pokazać swoim odbiorcom.']].map(([n,t,d])=><article key={n}><span className="step-number">{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section>;
-}

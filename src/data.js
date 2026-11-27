@@ -1,10 +1,17 @@
 export const catalogPath = "/documents/TWEL_Katalog.pdf";
 export const catalogRoute = "/katalog/";
 
+export const siteOrigin = 'https://twel.pl';
+
+const postalCode = '05-506';
+const city = 'Lesznowola';
+
 export const company = {
   name: 'FORS.AUTO Sp. z o.o.',
   street: 'ul. Poprzeczna 52G/1',
-  locality: '05-506 Lesznowola, Polska',
+  postalCode,
+  city,
+  locality: `${postalCode} ${city}, Polska`,
   registration: {
     NIP: '5223246290',
     KRS: '0001009798',
